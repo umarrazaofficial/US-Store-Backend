@@ -31,13 +31,9 @@ const getAllExpenses = async (req, res) => {
 
         let data = await expenses
             .find({
-                $or: [
-                    {
-                        propertyId: {$regex: req.query.propertyId},
-                        title: {$regex: req.query.title, $options: "i"},
-                        paidTo: {$regex: req.query.title, $options: "i"},
-                    },
-                ],
+                propertyId: {$regex: req.query.propertyId},
+                title: {$regex: req.query.title, $options: "i"},
+                paidTo: {$regex: req.query.title, $options: "i"},
             })
             .skip((page - 1) * pageSize)
             .limit(pageSize);

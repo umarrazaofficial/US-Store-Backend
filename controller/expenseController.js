@@ -43,7 +43,6 @@ const getAllExpenses = async (req, res) => {
         const totalPages = Math.ceil(totalItems / pageSize);
 
         let result = await expenses.aggregate([
-            {$match: filter},
             {
                 $group: {
                     _id: null,

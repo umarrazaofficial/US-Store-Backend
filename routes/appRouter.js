@@ -10,6 +10,7 @@ const {
     Getsingleproduct,
 } = require("../controller/productController");
 const {addProperty, getAllProperty, updateProperty, deleteProperty} = require("../controller/propertyController");
+const {addExpense, getAllExpenses, updateExpense, deleteExpense} = require("../controller/expenseController");
 const {
     Addorder,
     Getorder,
@@ -55,5 +56,10 @@ Route.post("/addProperty", addProperty);
 Route.get("/getAllProperty", getAllProperty);
 Route.put("/updateProperty/:_id", updateProperty);
 Route.delete("/deleteProperty/:_id", deleteProperty);
+// Expense Api's
+Route.post("/addExpense", addExpense);
+Route.get("/getAllExpenses", getAllExpenses);
+Route.put("/updateExpense/:_id", updateExpense);
+Route.delete("/deleteExpense/:_id", deleteExpense);
 
 module.exports = Route;

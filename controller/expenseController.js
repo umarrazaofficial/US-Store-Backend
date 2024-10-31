@@ -20,12 +20,24 @@ const getAllExpenses = async (req, res) => {
     const pageSize = parseInt(req.query.pageSize) || 10;
     try {
         const totalItems = await expenses.countDocuments({
-            $and: [{propertyId: {$regex: req.query.propertyId}, title: {$regex: req.query.title}}],
+            $and: [
+                {
+                    propertyId: {$regex: req.query.propertyId},
+                    title: {$regex: req.query.title, $options: "i"},
+                    paidTo: {$regex: req.query.title, $options: "i"},
+                },
+            ],
         });
 
         let data = await expenses
             .find({
-                $and: [{propertyId: {$regex: req.query.propertyId}, title: {$regex: req.query.title}}],
+                $and: [
+                    {
+                        propertyId: {$regex: req.query.propertyId},
+                        title: {$regex: req.query.title, $options: "i"},
+                        paidTo: {$regex: req.query.title, $options: "i"},
+                    },
+                ],
             })
             .skip((page - 1) * pageSize)
             .limit(pageSize);

@@ -9,6 +9,7 @@ const {
     Deleteproduct,
     Getsingleproduct,
 } = require("../controller/productController");
+const {addProperty, getAllProperty, updateProperty, deleteProperty} = require("../controller/propertyController");
 const {
     Addorder,
     Getorder,
@@ -50,5 +51,9 @@ Route.delete("/deleteRating/:_id", Deleterating);
 // Login Api's
 Route.post("/login", Login);
 // Property Api's
+Route.post("/addProperty", addProperty);
+Route.get("/getAllProperty", getAllProperty);
+Route.put("/updateProperty/:_id", updateProperty);
+Route.delete("/deleteProperty/:_id", deleteProperty);
 
 module.exports = Route;

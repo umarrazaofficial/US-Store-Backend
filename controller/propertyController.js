@@ -3,9 +3,9 @@ const property = require("../schema/propertySchema");
 const addProperty = async (req, res) => {
     try {
         let data = new property({
-            title: req.body.title,
-            paidTo: req.body.paidTo,
-            amount: req.body.amount,
+            name: req.body.name,
+            location: req.body.location,
+            area: req.body.area,
         });
         await data.save();
         res.send(data);

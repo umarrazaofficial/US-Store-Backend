@@ -12,5 +12,9 @@ const expensesSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    propertyId: {
+        type: String,
+        required: true,
+    },
 });
 module.exports = mongoose.model("expenses", expensesSchema);

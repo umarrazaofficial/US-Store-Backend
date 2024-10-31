@@ -16,10 +16,31 @@ const addExpense = async (req, res) => {
 };
 
 const getAllExpenses = async (req, res) => {
-    let data = await expenses.find({
-        $and: [{propertyId: {$regex: req.query.propertyId}, title: {$regex: req.query.title}}],
-    });
-    res.send(data);
+    const page = parseInt(req.query.page) || 1;
+    const pageSize = parseInt(req.query.pageSize) || 10;
+    try {
+        const totalItems = await expenses.countDocuments({
+            $and: [{propertyId: {$regex: req.query.propertyId}, title: {$regex: req.query.title}}],
+        });
+
+        let data = await expenses
+            .find({
+                $and: [{propertyId: {$regex: req.query.propertyId}, title: {$regex: req.query.title}}],
+            })
+            .skip((page - 1) * pageSize)
+            .limit(pageSize);
+
+        const totalPages = Math.ceil(totalItems / pageSize);
+
+        res.json({
+            currentPage: page,
+            totalPages: totalPages,
+            totalItems: totalItems,
+            data: data,
+        });
+    } catch (error) {
+        res.status(400).json({message: "Something went wrong"});
+    }
 };
 
 // const Getsingleproduct = async (req, res) => {

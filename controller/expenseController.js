@@ -31,7 +31,7 @@ const getAllExpenses = async (req, res) => {
 
         let data = await expenses
             .find({
-                $and: [
+                $or: [
                     {
                         propertyId: {$regex: req.query.propertyId},
                         title: {$regex: req.query.title, $options: "i"},

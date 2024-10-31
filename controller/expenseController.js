@@ -20,12 +20,11 @@ const getAllExpenses = async (req, res) => {
     const pageSize = parseInt(req.query.pageSize) || 10;
     try {
         const totalItems = await expenses.countDocuments({
-            $and: [
-                {
-                    propertyId: {$regex: req.query.propertyId},
-                    title: {$regex: req.query.title, $options: "i"},
-                    paidTo: {$regex: req.query.title, $options: "i"},
-                },
+            propertyId: {$regex: req.query.propertyId},
+            $or: [
+                {title: {$regex: req.query.title, $options: "i"}},
+                {paidTo: {$regex: req.query.title, $options: "i"}},
+                {amount: {$regex: req.query.title, $options: "i"}},
             ],
         });
 
@@ -43,10 +42,23 @@ const getAllExpenses = async (req, res) => {
 
         const totalPages = Math.ceil(totalItems / pageSize);
 
+        let result = await expenses.aggregate([
+            {$match: filter},
+            {
+                $group: {
+                    _id: null,
+                    totalAmount: {$sum: "$amount"},
+                },
+            },
+        ]);
+
+        const totalAmount = result.length > 0 ? result[0].totalAmount : 0;
+
         res.json({
             currentPage: page,
             totalPages: totalPages,
             totalItems: totalItems,
+            totalAmount: totalAmount,
             data: data,
         });
     } catch (error) {

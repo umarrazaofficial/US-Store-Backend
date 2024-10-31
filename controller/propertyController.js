@@ -15,7 +15,7 @@ const addProperty = async (req, res) => {
 };
 
 const getAllProperty = async (req, res) => {
-    let data = await property.find({$and: [{name: {$regex: req.query.name}}]});
+    let data = await property.find({$and: [{name: {$regex: req.query.name, $options: "i"}}]});
     res.send(data);
 };
 

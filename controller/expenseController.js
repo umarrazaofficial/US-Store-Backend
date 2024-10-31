@@ -16,7 +16,9 @@ const addExpense = async (req, res) => {
 };
 
 const getAllExpenses = async (req, res) => {
-    let data = await expenses.find({$and: [{propertyId: {$regex: req.query.propertyId}}]});
+    let data = await expenses.find({
+        $and: [{propertyId: {$regex: req.query.propertyId}, title: {$regex: req.query.title}}],
+    });
     res.send(data);
 };
 

@@ -49,5 +49,6 @@ Route.get("/getProductrating/:_id", Getproductrating);
 Route.delete("/deleteRating/:_id", Deleterating);
 // Login Api's
 Route.post("/login", Login);
+// Property Api's
 
 module.exports = Route;

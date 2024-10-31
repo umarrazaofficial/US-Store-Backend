@@ -30,9 +30,9 @@ const updateProperty = async (req, res) => {
             {_id: req.params},
             {
                 $set: {
-                    title: req.body.title,
-                    paidTo: req.body.paidTo,
-                    amount: req.body.amount,
+                    name: req.body.name,
+                    location: req.body.location,
+                    area: req.body.area,
                 },
             }
         );

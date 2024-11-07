@@ -6,7 +6,7 @@ const Router = require("./routes/appRouter");
 const allowedOrigins = [
     "https://usstore.vercel.app",
     "https://us-weather-application.vercel.app/",
-    "https://asdevelopers.vercel.app/",
+    "https://asdevelopers.vercel.app",
 ];
 
 const corsOptions = (req, callback) => {

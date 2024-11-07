@@ -8,6 +8,7 @@ const allowedOrigins = [
     "https://us-weather-application.vercel.app/",
     "https://asdevelopers.vercel.app",
     "https://usquizhub.vercel.app",
+    "http://localhost:3001",
 ];
 
 const corsOptions = (req, callback) => {

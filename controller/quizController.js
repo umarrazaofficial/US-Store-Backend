@@ -25,57 +25,6 @@ const getQuiz = async (req, res) => {
     }
 };
 
-// const getAllExpenses = async (req, res) => {
-//     const page = parseInt(req.query.page) || 1;
-//     const pageSize = parseInt(req.query.pageSize) || 10;
-//     try {
-//         const totalItems = await expenses.countDocuments({
-//             propertyId: {$regex: req.query.propertyId},
-//             $or: [
-//                 {title: {$regex: req.query.title, $options: "i"}},
-//                 {paidTo: {$regex: req.query.title, $options: "i"}},
-//                 {amount: {$regex: req.query.title, $options: "i"}},
-//             ],
-//         });
-
-//         let data = await expenses
-//             .find({
-//                 propertyId: {$regex: req.query.propertyId},
-//                 $or: [
-//                     {title: {$regex: req.query.title, $options: "i"}},
-//                     {paidTo: {$regex: req.query.title, $options: "i"}},
-//                     {amount: {$regex: req.query.title, $options: "i"}},
-//                 ],
-//             })
-//             .skip((page - 1) * pageSize)
-//             .limit(pageSize);
-
-//         const totalPages = Math.ceil(totalItems / pageSize);
-
-//         let result = await expenses.aggregate([
-//             {$match: {propertyId: {$regex: req.query.propertyId}}},
-//             {
-//                 $group: {
-//                     _id: null,
-//                     totalAmount: {$sum: {$toDouble: "$amount"}},
-//                 },
-//             },
-//         ]);
-
-//         const totalAmount = result.length > 0 ? result[0].totalAmount : 0;
-
-//         res.json({
-//             currentPage: page,
-//             totalPages: totalPages,
-//             totalItems: totalItems,
-//             totalAmount: totalAmount,
-//             data: data,
-//         });
-//     } catch (error) {
-//         res.status(400).json({message: "Something went wrong"});
-//     }
-// };
-
 // const updateExpense = async (req, res) => {
 //     try {
 //         let data = await expenses.updateOne(
@@ -103,6 +52,4 @@ const getQuiz = async (req, res) => {
 module.exports = {
     addQuiz,
     getQuiz,
-    // updateExpense,
-    // deleteExpense,
 };

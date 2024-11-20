@@ -64,6 +64,6 @@ Route.put("/updateExpense/:_id", updateExpense);
 Route.delete("/deleteExpense/:_id", deleteExpense);
 // Quiz Api's
 Route.post("/addQuiz", addQuiz);
-Route.post("/getQuiz", getQuiz);
+Route.get("/getQuiz", getQuiz);
 
 module.exports = Route;

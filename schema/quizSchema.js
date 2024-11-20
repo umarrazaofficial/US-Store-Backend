@@ -6,12 +6,7 @@ const quizSchema = new mongoose.Schema(
             required: true,
         },
         options: {
-            type: [
-                {
-                    key: String,
-                    value: String,
-                },
-            ],
+            type: [String],
             required: true,
         },
         correct_option: {

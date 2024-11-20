@@ -1,8 +1,8 @@
-const quiz = require("../schema/quizSchema");
+const quizzes = require("../schema/quizSchema");
 
 const addQuiz = async (req, res) => {
     try {
-        let data = new quiz({
+        let data = new quizzes({
             question: req.body.question,
             options: req.body.options,
             correct_option: req.body.correct_option,

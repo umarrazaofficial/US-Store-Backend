@@ -11,7 +11,7 @@ const {
 } = require("../controller/productController");
 const {addProperty, getAllProperty, updateProperty, deleteProperty} = require("../controller/propertyController");
 const {addExpense, getAllExpenses, updateExpense, deleteExpense} = require("../controller/expenseController");
-const {addQuiz} = require("../controller/quizController");
+const {addQuiz, getQuiz} = require("../controller/quizController");
 const {
     Addorder,
     Getorder,
@@ -64,5 +64,6 @@ Route.put("/updateExpense/:_id", updateExpense);
 Route.delete("/deleteExpense/:_id", deleteExpense);
 // Quiz Api's
 Route.post("/addQuiz", addQuiz);
+Route.post("/getQuiz", getQuiz);
 
 module.exports = Route;

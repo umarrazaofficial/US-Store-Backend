@@ -10,7 +10,18 @@ const addQuiz = async (req, res) => {
         await data.save();
         res.send(data);
     } catch (error) {
-        res.status(400).json({error: error || "Something went wrong"});
+        res.status(400).json({error: error?.message || "Something went wrong"});
+    }
+};
+const getQuiz = async (req, res) => {
+    try {
+        const quiz = await quizzes.aggregate([{$sample: {size: 1}}]);
+        if (!quiz.length) {
+            return res.status(404).send({message: "Quiz not found"});
+        }
+        res.send(quiz[0]);
+    } catch (error) {
+        res.status(500).send({message: "Error fetching quiz", error});
     }
 };
 
@@ -65,11 +76,6 @@ const addQuiz = async (req, res) => {
 //     }
 // };
 
-// // const Getsingleproduct = async (req, res) => {
-// //     let data = await product.findById(req.params);
-// //     res.send(data);
-// // };
-
 // const updateExpense = async (req, res) => {
 //     try {
 //         let data = await expenses.updateOne(
@@ -96,7 +102,7 @@ const addQuiz = async (req, res) => {
 
 module.exports = {
     addQuiz,
-    // getAllExpenses,
+    getQuiz,
     // updateExpense,
     // deleteExpense,
 };

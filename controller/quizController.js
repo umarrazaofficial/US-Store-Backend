@@ -10,7 +10,7 @@ const addQuiz = async (req, res) => {
         await data.save();
         res.send(data);
     } catch (error) {
-        res.status(400).json({error: "Something went wrong"});
+        res.status(400).json({error: error || "Something went wrong"});
     }
 };
 

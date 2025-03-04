@@ -26,6 +26,9 @@ const Multer = require("multer");
 const storage = Multer.memoryStorage();
 const upload = Multer({storage: storage});
 
+Route.get("/", (req, res) => {
+    res.send("Backend Running Successfully");
+});
 // User Api's
 Route.post("/createuser", Createuser);
 Route.get("/getUser", Getuser);
